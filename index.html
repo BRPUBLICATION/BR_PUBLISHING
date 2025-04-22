@@ -1,0 +1,2663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BR Publication</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Page Container */
+        .page-container {
+            display: none;
+            animation: fadeIn 0.5s ease;
+            padding-top: 72px;
+            /* Adjust based on header height */
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .page-container.active {
+            display: block;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(52, 152, 219, 0.8)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+
+      
+      /* About Intro Section */
+.about-intro {
+    background-color: #fff;
+}
+
+.about-intro .lead {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(52, 152, 219, 0.1);
+    border-radius: 8px;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--secondary);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--dark);
+}
+
+/* Philosophy Section */
+.philosophy-section {
+    background-color: var(--light);
+}
+
+.section-subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.philosophy-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.philosophy-card:hover {
+    transform: translateY(-10px);
+}
+
+.philosophy-icon {
+    font-size: 2.5rem;
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+}
+
+.philosophy-card h3 {
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+/* Team Section */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.team-card {
+    text-align: center;
+}
+
+.team-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.team-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(44, 62, 80, 0.8);
+    color: white;
+    padding: 1rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.team-image:hover .team-overlay {
+    transform: translateY(0);
+}
+
+.team-card h3 {
+    margin-bottom: 0.3rem;
+    color: var(--primary);
+}
+
+.team-card p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Floating Animation */
+.floating-img {
+    animation: float 6s ease-in-out infinite;
+}
+       /* About Section Enhancements */
+.about-section {
+    background-color: #fff;
+}
+
+.mission-vision {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.mv-card {
+    background: rgba(52, 152, 219, 0.05);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--secondary);
+}
+
+.mv-card i {
+    font-size: 1.5rem;
+    color: var(--secondary);
+    margin-bottom: 1rem;
+}
+
+.mv-card h4 {
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+/* Catalog Section */
+.catalog-section {
+    background-color: var(--light);
+}
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.catalog-card {
+    background: white;
+    padding: 1.5rem 1rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.catalog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.catalog-icon {
+    font-size: 2rem;
+    color: var(--secondary);
+    margin-bottom: 1rem;
+}
+
+.catalog-card h3 {
+    font-size: 1.1rem;
+    color: var(--primary);
+}
+
+/* Community Section */
+.community-content {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.community-image {
+    flex: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.community-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.community-text {
+    flex: 1;
+}
+
+.community-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.option-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.option-card i {
+    font-size: 1.8rem;
+    color: var(--secondary);
+    margin-bottom: 1rem;
+}
+
+.option-card h4 {
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.option-card p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* Publish Section */
+.publish-section {
+    background-color: #fff;
+}
+
+.publish-content {
+    display: flex;
+    gap: 3rem;
+}
+
+.publish-text {
+    flex: 1;
+}
+
+.publish-features {
+    list-style: none;
+    margin: 1.5rem 0;
+}
+
+.publish-features li {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.publish-features i {
+    color: var(--secondary);
+    margin-right: 0.8rem;
+    font-size: 1.2rem;
+}
+
+.publish-form {
+    flex: 1;
+    background: var(--light);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.publish-form h3 {
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+    text-align: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .community-content,
+    .publish-content {
+        flex-direction: column;
+    }
+    
+    .mission-vision,
+    .community-options {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .catalog-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+      /* About Hero Banner */
+.about-hero {
+    height: 70vh;
+    background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), 
+                url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+.hero-overlay {
+    max-width: 800px;
+    padding: 0 2rem;
+}
+
+.about-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    animation: fadeInDown 1s ease;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    animation: fadeInUp 1s ease;
+}
+
+.scroll-down {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+    cursor: pointer;
+}
+
+.scroll-down i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+/* Section Header Styles */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.section-tag {
+    display: inline-block;
+    background: var(--secondary);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.title-decoration {
+    width: 80px;
+    height: 4px;
+    background: var(--secondary);
+    margin: 0 auto 1.5rem;
+    border-radius: 2px;
+}
+
+.section-description {
+    max-width: 700px;
+    margin: 0 auto;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.light-header .section-title,
+.light-header .section-description {
+    color: white;
+}
+
+.light-header .title-decoration {
+    background: white;
+}
+
+/* About Content */
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    margin-top: 3rem;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.lead-text {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: var(--primary);
+    margin-bottom: 2rem;
+}
+
+.about-image {
+    flex: 1;
+    position: relative;
+}
+
+.image-frame {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.image-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.3), rgba(231, 76, 60, 0.3));
+    z-index: 1;
+}
+
+.parallax-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.image-frame:hover .parallax-img {
+    transform: scale(1.05);
+}
+
+/* Stats Carousel */
+.stats-carousel {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+    background: rgba(52, 152, 219, 0.05);
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 0 1.5rem;
+    position: relative;
+}
+
+.stat-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 50px;
+    width: 1px;
+    background: rgba(44, 62, 80, 0.1);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--secondary);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--dark);
+    font-weight: 500;
+}
+
+/* Values Section */
+.values-section {
+    position: relative;
+    overflow: hidden;
+    background: white;
+    padding: 6rem 0;
+}
+
+.floating-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15rem;
+    font-weight: 900;
+    color: rgba(44, 62, 80, 0.03);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.value-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: all 0.3s ease;
+    border-top: 4px solid var(--secondary);
+}
+
+.value-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.value-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(52, 152, 219, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 1.8rem;
+    color: var(--secondary);
+    transition: all 0.3s ease;
+}
+
+.value-card:hover .value-icon {
+    background: var(--secondary);
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.value-card h3 {
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+/* Genre Slider */
+.genre-slider {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    margin: 2rem 0;
+}
+
+.genre-slider::-webkit-scrollbar {
+    height: 8px;
+}
+
+.genre-slider::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.genre-slider::-webkit-scrollbar-thumb {
+    background: rgba(52, 152, 219, 0.5);
+    border-radius: 10px;
+}
+
+.genre-slide {
+    min-width: 200px;
+    scroll-snap-align: start;
+    background: white;
+    padding: 2rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.genre-slide:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.genre-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--secondary), var(--accent));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.genre-slide h3 {
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.genre-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.genre-link i {
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.genre-link:hover {
+    color: var(--accent);
+}
+
+.genre-link:hover i {
+    transform: translateX(5px);
+}
+
+/* Community Section */
+.community-section {
+    position: relative;
+    background: linear-gradient(135deg, var(--primary), #1a2a3a);
+    color: white;
+    padding: 6rem 0;
+    overflow: hidden;
+}
+
+.community-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+    opacity: 0.15;
+    z-index: 0;
+}
+
+.community-cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 3rem auto;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+}
+
+.community-card {
+    width: 300px;
+    height: 250px;
+    perspective: 1000px;
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    transition: transform 0.6s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card-front {
+    background: white;
+    color: var(--primary);
+    transform: rotateY(0deg);
+}
+
+.card-front i {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--secondary);
+}
+
+.card-front h3 {
+    font-size: 1.5rem;
+}
+
+.card-back {
+    background: var(--secondary);
+    color: white;
+    transform: rotateY(180deg);
+    text-align: center;
+}
+
+.card-back p {
+    margin-bottom: 1.5rem;
+}
+
+.community-card:hover .card-front {
+    transform: rotateY(-180deg);
+}
+
+.community-card:hover .card-back {
+    transform: rotateY(0deg);
+}
+
+.newsletter-form {
+    width: 100%;
+}
+
+.newsletter-form input {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.newsletter-form button {
+    background: white;
+    color: var(--secondary);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.newsletter-form button:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.social-connect {
+    text-align: center;
+    margin-top: 4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+    transform: translateY(-5px) scale(1.1);
+}
+
+.facebook { background: #3b5998; }
+.twitter { background: #1da1f2; }
+.instagram { background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); }
+.linkedin { background: #0077b5; }
+.goodreads { background: #553b08; }
+
+/* Publish Section */
+.publish-process {
+    display: flex;
+    justify-content: space-between;
+    margin: 3rem 0;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.process-step {
+    flex: 1;
+    min-width: 180px;
+    text-align: center;
+    position: relative;
+    padding: 1.5rem;
+    background: rgba(52, 152, 219, 0.05);
+    border-radius: 10px;
+}
+
+.process-step::after {
+    content: '→';
+    position: absolute;
+    right: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: var(--secondary);
+}
+
+.process-step:last-child::after {
+    display: none;
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    background: var(--secondary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 auto 1rem;
+}
+
+.process-step h3 {
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.publish-form-container {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.form-intro {
+    flex: 1;
+    padding: 3rem;
+    background: linear-gradient(135deg, var(--primary), #1a2a3a);
+    color: white;
+}
+
+.form-intro h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-features {
+    margin-top: 2rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.feature-item i {
+    margin-right: 0.8rem;
+    color: var(--secondary);
+}
+
+.floating-form {
+    flex: 1;
+    padding: 3rem;
+    position: relative;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    background: transparent;
+    z-index: 1;
+    position: relative;
+}
+
+.form-group label {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    color: #999;
+    transition: all 0.3s ease;
+    z-index: 0;
+}
+
+.form-group input:focus + label,
+.form-group input:valid + label,
+.form-group select:focus + label,
+.form-group select:valid + label,
+.form-group textarea:focus + label,
+.form-group textarea:valid + label {
+    top: -10px;
+    left: 10px;
+    font-size: 0.8rem;
+    background: white;
+    padding: 0 5px;
+    color: var(--secondary);
+    z-index: 2;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.file-upload {
+    position: relative;
+}
+
+.file-upload input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.file-upload label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border: 2px dashed #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.file-upload label:hover {
+    border-color: var(--secondary);
+    background: rgba(52, 152, 219, 0.05);
+}
+
+.file-upload i {
+    font-size: 2rem;
+    color: var(--secondary);
+    margin-bottom: 1rem;
+}
+
+.file-name {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.btn-submit {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-submit i {
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-submit:hover {
+    background: var(--accent);
+}
+
+.btn-submit:hover i {
+    transform: translateX(5px);
+}
+
+/* Testimonial Section */
+.testimonial-section {
+    background: linear-gradient(135deg, var(--accent), #c0392b);
+    color: white;
+    text-align: center;
+    padding: 6rem 0;
+}
+
+.testimonial-quote {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.testimonial-quote i {
+    font-size: 3rem;
+    opacity: 0.3;
+    margin-bottom: 1rem;
+}
+
+.testimonial-quote blockquote {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.quote-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quote-author img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 1rem;
+    object-fit: cover;
+    border: 3px solid white;
+}
+
+.quote-author h4 {
+    margin-bottom: 0.3rem;
+}
+
+.quote-author p {
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+    }
+    40% {
+        transform: translateY(-20px) translateX(-50%);
+    }
+    60% {
+        transform: translateY(-10px) translateX(-50%);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .publish-process {
+        justify-content: center;
+    }
+    
+    .process-step::after {
+        display: none;
+    }
+}
+
+@media (max-width: 992px) {
+    .about-content,
+    .publish-form-container {
+        flex-direction: column;
+    }
+    
+    .about-image {
+        order: -1;
+        margin-bottom: 2rem;
+    }
+    
+    .form-intro {
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .stats-carousel {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .stat-item:not(:last-child)::after {
+        display: none;
+    }
+    
+    .community-card {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .publish-process {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+.hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1512820790803-83ca734da794') no-repeat center center/cover;
+  color: #fff;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero .highlight {
+  color: #ffd700;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+}
+
+.btn {
+  padding: 12px 25px;
+  background-color: #ff6f61;
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 10px;
+  transition: 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #e55d4f;
+  transform: scale(1.05);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid #ff6f61;
+  color: #ff6f61;
+}
+
+.btn-outline:hover {
+  background-color: #ff6f61;
+  color: #fff;
+}
+
+.section-title h2 {
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.section-title .section-subtitle {
+  text-align: center;
+  font-style: italic;
+  color: #888;
+}
+
+.underline {
+  border-bottom: 3px solid #ff6f61;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.about-content {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.about-text {
+  max-width: 800px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.philosophy-grid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 40px 0;
+}
+
+.philosophy-card {
+  background-color: #f9f9f9;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  width: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.philosophy-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.philosophy-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #ff6f61;
+}
+
+/* Animations */
+.fade-in-up {
+  animation: fadeInUp 1s ease-out;
+}
+
+.fade-in-delay {
+  animation: fadeIn 1.5s ease-out;
+}
+
+.fade-in {
+  animation: fadeIn 2s ease-out;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+      
+      
+       
+        
+        /* Books grid */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .book-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .book-image {
+            height: 300px;
+            overflow: hidden;
+        }
+        .book-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .book-card:hover .book-image img {
+            transform: scale(1.05);
+        }
+        .book-info {
+            padding: 1.5rem;
+        }
+        .book-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .book-info p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        /* Services styling */
+        .services-categories {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .service-category {
+            margin-bottom: 3rem;
+        }
+        .category-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        .category-title i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .service-card {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        .service-icon {
+            font-size: 2rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+        .service-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        /* Why Choose Us */
+        .why-choose-us {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+        
+        /* CTA */
+        .cta-container {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: #f8f9fa;
+            margin-top: 3rem;
+        }
+        .cta-container h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Page container */
+        .page-container {
+            display: none;
+        }
+        .page-container.active {
+            display: block;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info {
+            flex: 1 1 300px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-text h4 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-text p {
+            color: #666;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .contact-form {
+            flex: 1 1 300px;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+            bottom: -8px;
+            left: 0;
+        }
+
+        .footer-column p {
+            margin-bottom: 1rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <img src="https://i.ibb.co/XfVxhNrC/Black-and-Grey-Copywriter-Personal-Logo.png" alt="Logo">
+                <div class="logo-text">BR Publication</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#books" class="nav-link">Books</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+   <!-- Home Page -->
+<div id="home" class="page-container active">
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="fade-in-up">Welcome to <span class="highlight">BR Publishing House</span></h1>
+      <p class="hero-subtitle fade-in-delay">Discover New Stories, Ignite Imaginations</p>
+
+    </div>
+  </section>
+
+  <section class="section about-intro">
+    <div class="section-title">
+      <h2 class="underline">Your Story Starts Here</h2>
+    </div>
+    <div class="about-content">
+      <div class="about-text fade-in">
+        <p class="lead">A leading book publishing company dedicated to discovering and sharing exceptional stories with the world.</p>
+        <p>We're passionate about helping authors bring their ideas to life and connecting readers with inspiring content. At <strong>BR Publishing House (A unit of BRC)</strong>, we believe in the power of stories to transform lives, spark imagination, and foster empathy.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section philosophy-section">
+    <div class="section-title">
+      <h2 class="underline">Our Publishing Philosophy</h2>
+      <p class="section-subtitle">✨ What makes us different</p>
+    </div>
+    <div class="philosophy-grid">
+      <div class="philosophy-card hover-glow">
+        <div class="philosophy-icon"><i class="fas fa-user-edit"></i></div>
+        <h3>Author-Centric Approach</h3>
+        <p>We prioritize the needs and goals of our authors, providing personalized support and guidance throughout the publishing process.</p>
+      </div>
+      <div class="philosophy-card hover-glow">
+        <div class="philosophy-icon"><i class="fas fa-award"></i></div>
+        <h3>Quality-Driven</h3>
+        <p>We're committed to producing high-quality books that meet the highest standards of editing, design, and production.</p>
+      </div>
+      <div class="philosophy-card hover-glow">
+        <div class="philosophy-icon"><i class="fas fa-globe"></i></div>
+        <h3>Innovative Distribution</h3>
+        <p>We leverage the latest technology and distribution channels to ensure our books reach readers worldwide.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+   <!-- About Page -->
+<div id="about" class="page-container">
+    <!-- Hero Banner -->
+    <div class="about-hero">
+        <div class="hero-overlay">
+            <h1>About BR Publishing House</h1>
+            <p class="hero-subtitle">Where Stories Come to Life</p>
+            <div class="scroll-down">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Who We Are Section -->
+    <section class="section about-section">
+        <div class="section-header">
+            <span class="section-tag">Our Story</span>
+            <h2 class="section-title">Who We Are</h2>
+            <div class="title-decoration"></div>
+        </div>
+        
+        <div class="about-content animated-content">
+            <div class="about-text">
+                <p class="lead-text">Welcome to BR Publishing House, a leading book publishing company dedicated to discovering and sharing exceptional stories with the world.</p>
+                <p>We're passionate about helping authors bring their ideas to life and connecting readers with inspiring content. Our team of experienced editors, designers, and publishers work tirelessly to identify and nurture talented authors, bringing their manuscripts to life with care and dedication.</p>
+                
+            <div class="about-image">
+                <div class="image-frame">
+                    <img src="https://images.unsplash.com/photo-1551029506-0807df4e2031?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                        alt="Our Team" class="parallax-img">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Values -->
+    <section class="section values-section">
+        <div class="floating-bg-text">Values</div>
+        
+        <div class="section-header">
+            <span class="section-tag">Our Core</span>
+            <h2 class="section-title">Mission & Values</h2>
+            <div class="title-decoration"></div>
+        </div>
+        
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3>Quality First</h3>
+                <p>We maintain the highest standards in editing, design, and production to deliver exceptional books.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3>Innovation</h3>
+                <p>Embracing new technologies and creative approaches to publishing and storytelling.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3>Integrity</h3>
+                <p>Honest, transparent relationships with authors, partners, and readers.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>Diversity</h3>
+                <p>Celebrating diverse voices and perspectives in our publications.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section class="section catalog-section">
+        <div class="section-header">
+            <span class="section-tag">Discover</span>
+            <h2 class="section-title">Explore Our Catalog</h2>
+            <div class="title-decoration"></div>
+            <p class="section-description">Browse our diverse range of genres and find your next favorite book</p>
+        </div>
+        
+        <div class="genre-slider">
+            <div class="genre-slide">
+                <div class="genre-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <h3>Science</h3>
+                
+            </div>
+            <div class="genre-slide">
+                <div class="genre-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>Technology</h3>
+                
+            </div>
+            <div class="genre-slide">
+                <div class="genre-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Social Sciences</h3>
+                
+            </div>
+            <div class="genre-slide">
+                <div class="genre-icon">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                <h3>Humanities</h3>
+                
+            </div>
+            <div class="genre-slide">
+                <div class="genre-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Business</h3>
+                
+            </div>
+            <div class="genre-slide">
+                <div class="genre-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Education</h3>
+                
+            </div>
+        </div>
+        
+        <div class="text-center">
+            
+    </section>
+
+    <!-- Community Section -->
+    <section class="section community-section">
+        <div class="community-bg"></div>
+        
+        <div class="section-header light-header">
+            <span class="section-tag">Connect</span>
+            <h2 class="section-title">Join Our Community</h2>
+            <div class="title-decoration"></div>
+            <p class="section-description">Be part of our growing family of readers and authors</p>
+        </div>
+        
+        <div class="community-cards">
+            <div class="community-card">
+                <div class="card-front">
+                    <i class="fas fa-envelope-open-text"></i>
+                    <h3>Newsletter</h3>
+                </div>
+                <div class="card-back">
+                    <p>Get exclusive content, early access to new releases, and special offers</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="community-card">
+                <div class="card-front">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Events</h3>
+                </div>
+                <div class="card-back">
+                    <p>Join our book launches, author meetups, and reading clubs</p>
+                    <a href="#" class="btn btn-small">View Calendar</a>
+                </div>
+            </div>
+            
+            <div class="community-card">
+                <div class="card-front">
+                    <i class="fas fa-users"></i>
+                    <h3>Book Clubs</h3>
+                </div>
+                <div class="card-back">
+                    <p>Connect with fellow readers in our online and local book clubs</p>
+                    <a href="#" class="btn btn-small">Join Now</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </section>
+
+    <!-- Get Published Section -->
+    <section class="section publish-section">
+        <div class="section-header">
+            <span class="section-tag">For Authors</span>
+            <h2 class="section-title">Get Published With Us</h2>
+            <div class="title-decoration"></div>
+            <p class="section-description">Your story deserves to be heard</p>
+        </div>
+        
+        <div class="publish-process">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>Submit Your Manuscript</h3>
+                <p>Send us your work through our online portal</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>Editorial Review</h3>
+                <p>Our team evaluates your submission</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>Contract & Planning</h3>
+                <p>We discuss terms and publication strategy</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>Production</h3>
+                <p>Editing, design, and preparation</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">5</div>
+                <h3>Launch & Marketing</h3>
+                <p>Your book goes out into the world</p>
+            </div>
+        </div>
+        
+        <div class="publish-form-container">
+            <div class="form-intro">
+                <h3>Ready to Begin Your Publishing Journey?</h3>
+                <p>Fill out the form below and our editorial team will get back to you within 5 business days.</p>
+                <div class="form-features">
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>No upfront costs</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Competitive royalties</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Professional guidance</span>
+                    </div>
+                </div>
+            </div>
+            
+            <form id="publishForm" class="floating-form">
+                <div class="form-group">
+                    <input type="text" id="authorName" required>
+                    <label for="authorName">Your Name</label>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="authorEmail" required>
+                    <label for="authorEmail">Email Address</label>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="authorPhone">
+                    <label for="authorPhone">Phone Number</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="bookTitle" required>
+                    <label for="bookTitle">Book Title</label>
+                </div>
+                <div class="form-group">
+                    <select id="bookGenre" required>
+                        <option value=""></option>
+                        <option value="fiction">Fiction</option>
+                        <option value="non-fiction">Non-Fiction</option>
+                        <option value="academic">Academic</option>
+                        <option value="children">Children's</option>
+                    </select>
+                    <label for="bookGenre">Genre</label>
+                </div>
+                <div class="form-group full-width">
+                    <textarea id="bookSynopsis" rows="4" required></textarea>
+                    <label for="bookSynopsis">Synopsis (300 words max)</label>
+                </div>
+                <div class="form-group full-width">
+                    <div class="file-upload">
+                        <label for="manuscriptFile">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Upload Manuscript</span>
+                            <input type="file" id="manuscriptFile" required>
+                        </label>
+                        <div class="file-name">No file chosen</div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-submit">
+                    <span>Submit Proposal</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="section testimonial-section">
+        <div class="testimonial-quote">
+            <i class="fas fa-quote-left"></i>
+            <blockquote>
+                Working with BR Publishing House was a transformative experience. Their team's dedication to quality and author satisfaction is unmatched in the industry.
+            </blockquote>
+            <div class="quote-author">
+                <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Author">
+                <div>
+                    <h4>Sarah Johnson</h4>
+                    <p>Bestselling Author</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+    <div id="books" class="page-container active">
+    <section class="section books-section">
+        <div class="section-title">
+            <h2>Our Books</h2>
+        </div>
+        <div class="books-grid">
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/zh5YSvg7/1.png" alt="Book 1">
+                </div>
+                <div class="book-info">
+                    <h3>GENE EDITING</h3>
+                    
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/fVjmdmYq/2.png" alt="Book 2">
+                </div>
+                <div class="book-info">
+                    <h3>DRONE AI</h3>
+                    
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/FbRqYzH6/3.png" alt="Book 3">
+                </div>
+                <div class="book-info">
+                    <h3>DRONE FARMING</h3>
+                    
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/bgTY4H4r/4.png" alt="Book 4">
+                </div>
+                <div class="book-info">
+                    <h3>GENERATIVE AI</h3>
+                    
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/27t5KGfs/5.png" alt="Book 5">
+                </div>
+                <div class="book-info">
+                    <h3>CODING FOR BIOLOGY GRADUATES</h3>
+                    
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/QFNmGsc3/6.png" alt="Book 6">
+                </div>
+                <div class="book-info">
+                    <h3>CODING FOR AGRI GRADUATES</h3>
+                    
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/zHBjx4S3/7.png" alt="Book 7">
+                </div>
+                <div class="book-info">
+                    <h3>AI FOR BIOLOGY</h3>
+                    
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/5g5wS0GN/8.png" alt="Book 8">
+                </div>
+                <div class="book-info">
+                    <h3>AI FOR AGRICULTURE</h3>
+                    
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/23kc1JQS/9.png" alt="Book 9">
+                </div>
+                <div class="book-info">
+                    <h3>AI FOR LAW SYSTEM</h3>
+                    
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/9HkVLjyv/10.png" alt="Book 10">
+                </div>
+                <div class="book-info">
+                    <h3>IMMUNOLOGY</h3>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Quarterly journals published by us -->
+        <div class="section-title">
+            <h2>Quarterly journals published by us</h2>
+        </div>
+        <div class="books-grid">
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/QjPhTHGw/23.png" alt="Journal 1">
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/qY2LS5gj/24.png" alt="Journal 2">
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/xt1FZzZJ/25.png" alt="Journal 3">
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/MxgHGT7x/26.png" alt="Journal 4">
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/HpdvZhWY/27.png" alt="Journal 5">
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/WpyspyjG/28.png" alt="Journal 6">
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced AI & ROBOTICS BOOKS -->
+        <div class="section-title">
+            <h2>Advanced AI & ROBOTICS BOOKS - published by us</h2>
+        </div>
+        <div class="books-grid">
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/ycnbGx36/11.png" alt="AI Book 1">
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/4Z1pvgG6/12.png" alt="AI Book 2">
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/GfSc2VCb/13.png" alt="AI Book 3">
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/2YhtZsmx/14.png" alt="AI Book 4">
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/PLmD363/15.png" alt="AI Book 5">
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/mCFbS6N5/16.png" alt="AI Book 6">
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/WNcMx0gw/17.png" alt="AI Book 7">
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/KxTVNx3H/18.png" alt="AI Book 8">
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/5gxtVwKp/19.png" alt="AI Book 9">
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/TBk61crW/20.png" alt="AI Book 10">
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/1fxKGtv0/21.png" alt="AI Book 11">
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://i.ibb.co/4n4VvXy7/22.png" alt="AI Book 12">
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Services Page -->
+<div id="services" class="page-container">
+    <section class="section services-section">
+        <div class="section-title">
+            <h2>Our Services</h2>
+            <p class="section-subtitle">Comprehensive publishing solutions for authors at every stage</p>
+        </div>
+        
+        <!-- Main Services Categories -->
+        <div class="services-categories">
+            <div class="service-category">
+                <h3 class="category-title"><i class="fas fa-book"></i> Book Publishing Services</h3>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-file-alt"></i></div>
+                        <h3>Manuscript Evaluation</h3>
+                        <p>Our expert editors will review your manuscript and provide feedback on its potential for publication.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-pen-nib"></i></div>
+                        <h3>Editing Services</h3>
+                        <p>We offer developmental editing, line editing, and proofreading to ensure your manuscript is polished and error-free.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+                        <h3>Book Design</h3>
+                        <p>Our designers will create a custom cover and interior design tailored to your genre and target audience.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-truck"></i></div>
+                        <h3>Printing & Distribution</h3>
+                        <p>We'll handle printing and distribution to major retailers including Amazon, Barnes & Noble, and Apple Books.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-category">
+                <h3 class="category-title"><i class="fas fa-tablet-alt"></i> E-book Services</h3>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-exchange-alt"></i></div>
+                        <h3>E-book Conversion</h3>
+                        <p>We'll convert your manuscript into various e-book formats, including EPUB, MOBI, and PDF.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-globe"></i></div>
+                        <h3>E-book Distribution</h3>
+                        <p>We'll distribute your e-book to major online retailers, including Amazon Kindle, Apple Books, and Barnes & Noble Press.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-category">
+                <h3 class="category-title"><i class="fas fa-bullhorn"></i> Marketing and Promotion</h3>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-hashtag"></i></div>
+                        <h3>Social Media Management</h3>
+                        <p>We'll help you establish and maintain a strong online presence through social media platforms.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-ad"></i></div>
+                        <h3>Book Promotion</h3>
+                        <p>We'll develop a customized marketing plan to reach your target audience and boost book sales.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-user-circle"></i></div>
+                        <h3>Author Platform Development</h3>
+                        <p>We'll help you build your author platform, including website design and content creation.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-category">
+                <h3 class="category-title"><i class="fas fa-plus-circle"></i> Additional Services</h3>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-ghost"></i></div>
+                        <h3>Ghostwriting</h3>
+                        <p>Our experienced writers can help you create high-quality content, from fiction to nonfiction.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-indent"></i></div>
+                        <h3>Book Formatting</h3>
+                        <p>We'll format your book according to the requirements of various print-on-demand platforms.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-headphones"></i></div>
+                        <h3>Audiobook Production</h3>
+                        <p>We'll produce a high-quality audiobook version of your book.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Why Choose Us Section -->
+        <div class="why-choose-us">
+            <h3 class="section-subtitle">Why Choose BR Publishing House?</h3>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-user-friends"></i></div>
+                    <h4>Personalized Service</h4>
+                    <p>We offer personalized support and guidance throughout the publishing process.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-award"></i></div>
+                    <h4>Expertise</h4>
+                    <p>Our team of professionals has years of experience in the publishing industry.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-star"></i></div>
+                    <h4>Quality</h4>
+                    <p>We're committed to producing high-quality books that meet the highest standards.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Call to Action -->
+        <div class="cta-container">
+            <h3>Ready to publish your book?</h3>
+            <p>Contact us today to learn more about our services and how we can help you achieve your publishing goals.</p>
+        </div>
+    </section>
+</div>
+    <!-- Contact Page -->
+    <div id="contact" class="page-container">
+        <section class="section contact-section">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                            <div class="contact-text">
+                                <h4>Phone</h4>
+                                <p> +91 8867394159 </p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p> brpublishingh@gmail.com , admin@brpublishing.org 
+
+</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="contact-text">
+                                <h4>Address</h4>
+                                <p>No 04 , Second Block , RR NAGAR , Bangalore , Karnataka , INDIA  - 560098
+</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form" action="#" method="post">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input id="name" class="form-control" type="text" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input id="email" class="form-control" type="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Why Choose BR Publishing House?
+</h3>
+                <p>- Personalized Service: We offer personalized support and guidance throughout the publishing process.
+- Expertise: Our team of professionals has years of experience in the publishing industry.
+- Quality: We're committed to producing high-quality books that meet the highest standards of editing, design, and production.
+</p>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Info</h3>
+                <p>Phone: +91 8867394159 
+</p>
+                <p>Email:  brpublishingh@gmail.com , admin@brpublishing.org </p>
+                <p>No 04 , Second Block , RR NAGAR , Bangalore , Karnataka , INDIA  - 560098
+</p>
+            </div>
+        </div>
+        <p style="margin-top: 2rem;">&copy; 2025 BR Publication. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Navigation page switching
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page-container');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+
+                // Remove active from all pages and nav links
+                pages.forEach(page => page.classList.remove('active'));
+                navLinks.forEach(nav => nav.classList.remove('active'));
+
+                // Add active to clicked link and target page
+                link.classList.add('active');
+                const targetPage = document.getElementById(targetId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
