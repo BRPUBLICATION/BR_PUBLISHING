@@ -1854,6 +1854,7 @@
                     <li><a href="#home" class="nav-link active">Home</a></li>
                     <li><a href="#about" class="nav-link">About</a></li>
                     <li><a href="#books" class="nav-link">Books</a></li>
+                  <li><a href="#buybook" class="nav-link">Buy Books</a></li>
                     <li><a href="#services" class="nav-link">Services</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
@@ -2422,8 +2423,80 @@
         </div>
     </section>
 </div>
+<div id="buybook" class="page-container">
+  <section class="section books-section" style="background: linear-gradient(135deg, #e0f7fa, #ffffff); padding: 4rem 2rem;">
+    <div class="section-title" style="text-align: center; margin-bottom: 2rem;">
+      <h2 style="font-size: 2.5rem; color: #2c3e50;">Buy Book</h2>
+      <p style="color: #666; font-size: 1.1rem;">Order your favorite titles directly from us</p>
+    </div>
+    <div class="books-grid">
+      <div class="book-card" style="border: 1px solid #ddd; border-radius: 10px; overflow: hidden; background: #fff;">
+        <div class="book-image">
+          <img src="https://i.ibb.co/FbRqYzH6/3.png" alt="Drone Farming">
+        </div>
+        <div class="book-info" style="text-align: center;">
+          <h3 style="color: #3498db; margin: 1rem 0 0.5rem;">Drone Farming</h3>
+          <p style="color: #7f8c8d; font-size: 0.95rem;">Explore the future of agriculture with drones and smart farming solutions.</p>
+          <a href="#purchase-drone" class="btn nav-link" style="margin-top: 1rem; display: inline-block;">Buy Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 
+     <!-- Purchase Page Section -->
+<div id="purchase-drone" class="page-container">
+  <section class="section" style="background: linear-gradient(135deg, #fdfbfb, #ebedee); padding: 4rem 2rem;">
+    <div class="section-title" style="text-align: center; margin-bottom: 2rem;">
+      <h2 style="font-size: 2.5rem; color: #2c3e50;">Purchase Details - Drone Farming</h2>
+    </div>
+    <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 2rem; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+      <img src="https://i.ibb.co/FbRqYzH6/3.png" alt="Drone Farming Book" style="max-width: 100%; height: auto; border-radius: 5px;">
+      <h3 style="margin-top: 1rem; color: #3498db;">Drone Farming</h3>
+      <p style="font-weight: bold; font-size: 1.2rem;">Price: ₹499</p>
+      <p style="color: #666;">This book provides insights into the integration of drones into modern agricultural practices, improving efficiency and sustainability.</p>
+      <form style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1.2rem;">
+        <div class="form-group" style="display: flex; flex-direction: column;">
+          <label for="buyerName">Full Name</label>
+          <input type="text" id="buyerName" class="form-control" required>
+        </div>
+        <div class="form-group" style="display: flex; flex-direction: column;">
+          <label for="buyerEmail">Email</label>
+          <input type="email" id="buyerEmail" class="form-control" required>
+        </div>
+        <div class="form-group" style="display: flex; flex-direction: column;">
+          <label for="buyerAddress">Shipping Address</label>
+          <textarea id="buyerAddress" class="form-control" rows="3" required></textarea>
+        </div>
+        <div class="form-group" style="display: flex; flex-direction: column;">
+          <label for="landmark">Nearby Landmark</label>
+          <input type="text" id="landmark" class="form-control" required>
+        </div>
+        <div class="form-group" style="display: flex; flex-direction: column;">
+          <label for="pincode">Pincode</label>
+          <input type="text" id="pincode" class="form-control" pattern="\d{6}" title="Enter a valid 6-digit pincode" required>
+        </div>
+        <div class="form-group" style="display: flex; flex-direction: column;">
+          <label for="city">City</label>
+          <input type="text" id="city" class="form-control" required>
+        </div>
+        <div class="form-group" style="display: flex; flex-direction: column;">
+         <button type="button" class="btn" id="proceedToPayBtn" style="width: fit-content; align-self: center; padding: 0.8rem 2rem;">
+  Proceed to Pay
+</button>
 
+<script>
+  document.getElementById("proceedToPayBtn").addEventListener("click", function() {
+    window.location.href = "https://rzp.io/rzp/HticNVj";
+  });
+</script>
+
+</div>
+<button type="submit" class="btn" id="placeOrderBtn" style="width: fit-content; align-self: center; padding: 0.8rem 2rem;">Place Order</button>
+</form>
+</div>
+</section>
+</div>
 
 <!-- Services Page -->
 <div id="services" class="page-container">
