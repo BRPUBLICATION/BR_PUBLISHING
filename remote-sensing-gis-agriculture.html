@@ -17,6 +17,7 @@
       border-radius: 12px;
       padding: 2rem;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      position: relative;
     }
     .book-image {
       text-align: center;
@@ -76,10 +77,36 @@
     .buy-button:hover {
       background: #2c80b4;
     }
+    .back-button {
+      position: absolute;
+      left: 2rem;
+      top: 2rem;
+      display: inline-flex;
+      align-items: center;
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      text-decoration: none;
+      font-size: 0.95rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .back-button:hover {
+      background: #2c80b4;
+      transform: translateX(-3px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .back-button::before {
+      content: "← ";
+      margin-right: 0.3rem;
+      font-size: 1.1rem;
+    }
   </style>
 </head>
 <body>
   <div class="container">
+    <a href="index.html#buybook" class="back-button">Back</a>
     <div class="book-image">
       <img src="https://images-na.ssl-images-amazon.com/images/I/713rJ13UIsL._SL1500_.jpg" alt="Remote Sensing and GIS Applications in Agriculture Book Cover" loading="lazy" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://m.media-amazon.com/images/I/713rJ13UIsL._SL1500_.jpg';">
     </div>
